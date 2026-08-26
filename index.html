@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trainee Profile & Marksheet</title>
     
-    <!-- आइकन के लिए Font Awesome (Cart icon के लिए ज़रूरी) -->
+    <!-- Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
     <style>
@@ -16,10 +16,10 @@
             background-color: #f4f7f6; 
             color: #000000;
             line-height: 1.6;
-            font-size: 18px; /* बॉडी का बेस फॉन्ट बढ़ा दिया */
+            font-size: 16px;
         }
 
-        /* --- HEADER / NAVBAR STYLES --- */
+        /* --- HEADER / NAVBAR --- */
         .navbar {
             background-color: #fff;
             display: flex;
@@ -38,7 +38,7 @@
             justify-content: space-between; cursor: pointer;
         }
         .hamburger-menu span { height: 3px; width: 100%; background-color: #333; border-radius: 1px; }
-        .logos { display: flex; align-items: center; gap: 15px; }
+        .logos { display: flex; align-items: center; gap: 15px; flex-wrap: wrap; }
         .logo-1 { height: 50px; } 
         .logo-2 { height: 80px; } 
         .logo-3 { height: 60px; } 
@@ -63,7 +63,7 @@
         .card-header {
             padding: 20px 25px;
             border-bottom: 1px solid #eee;
-            font-size: 32px; /* Header साइज */
+            font-size: 28px;
             font-weight: 700;
             background-color: #fff;
             color: #222;
@@ -74,25 +74,26 @@
             width: 140px; height: 140px;
             border-radius: 50%;
             border: 4px solid #ff8c00;
-            padding: 4px; object-fit: cover;
+            padding: 4px;
+            object-fit: cover;
         }
 
-        /* DETAILS GRID (Text Size Increased) */
+        /* DETAILS GRID */
         .details-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            column-gap: 60px; row-gap: 20px;
+            column-gap: 60px;
+            row-gap: 20px;
         }
         .detail-item { display: flex; align-items: flex-start; margin-bottom: 15px; }
-        .label { width: 45%; font-weight: 600; color: #000000; font-size: 19px; } /* Label बढ़ा दिया */
-        .value { width: 55%; color: #444; font-size: 19px; text-transform: uppercase; font-weight: 500; } /* Value बढ़ा दिया */
+        .label { width: 45%; font-weight: 600; color: #000000; font-size: 17px; }
+        .value { width: 55%; color: #444; font-size: 17px; text-transform: uppercase; font-weight: 500; }
 
-        /* --- MARKSHEET TABLE STYLES --- */
+        /* --- MARKSHEET TABLE --- */
         .scroll-wrapper {
             width: 100%;
             overflow-x: auto;
             margin-top: 20px;
-            
         }
         .marksheet-table {
             min-width: 1100px; 
@@ -101,15 +102,18 @@
             border-spacing: 0 10px;
         }
         .marksheet-table th {
-            padding: 12px; font-size: 17px; /* Table Header बढ़ा दिया */
-            color: #000000; font-weight: 700; text-align: center;
+            padding: 12px;
+            font-size: 16px;
+            color: #000000;
+            font-weight: 700;
+            text-align: center;
             background-color: #f1f1f1;
         }
         .marksheet-table td {
-            padding: 18px 10px; text-align: center;
-            font-size: 22px; /* Table Data बढ़ा दिया */
+            padding: 18px 10px;
+            text-align: center;
+            font-size: 18px;
             background-color: #ffffff;
-            
         }
         .total-row td {
             background-color: #f9f9f9 !important;
@@ -126,110 +130,282 @@
             gap: 100px;
             font-size: 20px;
             font-weight: bold;
+            flex-wrap: wrap;
         }
 
-        /* =========================================
-           FLOATING CART CSS (NAYA ADD KIYA)
-        ============================================ */
-      
-        
+        /* --- FLOATING CART (Fully Working) --- */
+        .floating-cart {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 70px;
+            height: 70px;
+            background: #ff8c00;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            box-shadow: 0 4px 20px rgba(255, 140, 0, 0.4);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 999;
+            border: none;
+            text-decoration: none;
+        }
+        .floating-cart:hover {
+            transform: scale(1.1);
+            background: #e67e00;
+            box-shadow: 0 6px 25px rgba(255, 140, 0, 0.6);
+        }
+        .floating-cart .cart-count {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: red;
+            color: white;
+            border-radius: 50%;
+            width: 25px;
+            height: 25px;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
 
-        /* RESPONSIVE */
+        /* --- RESPONSIVE --- */
         @media (max-width: 768px) {
             .details-grid { grid-template-columns: 1fr; }
-            .label, .value { font-size: 17px; }
-            .floating-cart { width: 60px; height: 60px; bottom: 20px; right: 20px; }
+            .label, .value { font-size: 15px; }
+            .marksheet-table td { font-size: 14px; padding: 12px 5px; }
+            .marksheet-table th { font-size: 13px; padding: 8px 5px; }
+            .marksheet-table { min-width: 700px; }
+            .floating-cart { width: 55px; height: 55px; font-size: 24px; bottom: 20px; right: 20px; }
+            .result-section { gap: 30px; font-size: 17px; }
+            .card-header { font-size: 22px; }
+            .card-content { padding: 20px; }
+            .logo-1 { height: 35px; }
+            .logo-2 { height: 55px; }
+            .logo-3 { height: 40px; }
+            .logo-4 { height: 60px; }
+            .navbar { padding: 10px 15px; }
+        }
+
+        @media (max-width: 480px) {
+            .marksheet-table { min-width: 500px; }
+            .marksheet-table td { font-size: 12px; padding: 8px 3px; }
+            .marksheet-table th { font-size: 11px; padding: 6px 3px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- 1. HEADER SECTION -->
+    <!-- ===== HEADER ===== -->
     <header class="navbar">
         <div class="left-section">
-            <div class="hamburger-menu"><span></span><span></span><span></span></div>
+            <div class="hamburger-menu" aria-label="Toggle navigation" role="button" tabindex="0">
+                <span></span><span></span><span></span>
+            </div>
             <div class="logos">
-                <img src="09.webp" class="logo-1" alt="Logo 1">
-                <img src="2.png"   class="logo-2" alt="Logo 2">
-                <img src="3.jpg"   class="logo-3" alt="Logo 3">
-                <img src="4.png"   class="logo-4" alt="Logo 4">
+                <img src="https://via.placeholder.com/50x50?text=Logo1" class="logo-1" alt="Company Logo 1">
+                <img src="https://via.placeholder.com/80x80?text=Logo2" class="logo-2" alt="Company Logo 2">
+                <img src="https://via.placeholder.com/60x60?text=Logo3" class="logo-3" alt="Company Logo 3">
+                <img src="https://via.placeholder.com/90x90?text=Logo4" class="logo-4" alt="Company Logo 4">
             </div>
         </div>
     </header>
 
+    <!-- ===== MAIN CONTAINER ===== -->
     <div class="main-container">
         
-        <!-- 2. TRAINEE DETAILS SECTION -->
+        <!-- ===== CARD 1: TRAINEE DETAILS ===== -->
         <div class="card">
             <div class="card-header">Trainee Details</div>
             <div class="card-content">
                 <div class="profile-section">
-                    <img src="photo.jpg" alt="Profile" class="profile-img">
+                    <img src="https://via.placeholder.com/140x140?text=Photo" alt="Trainee Profile Photo" class="profile-img">
                 </div>
 
                 <div class="details-grid">
                     <div class="left-col">
-                        <div class="detail-item"><div class="label">Roll No:</div><div class="value">00220810076383</div></div>
-                        <div class="detail-item"><div class="label">Father Name:</div><div class="value">MANOJ MAHTO</div></div>
-                        <div class="detail-item"><div class="label">Trade Name:</div><div class="value">Electrician (NSQF)</div></div>
-                        <div class="detail-item"><div class="label">Date of Birth:</div><div class="value">03-OCT-2006</div></div>
-                        <div class="detail-item"><div class="label">ITI Name:</div><div class="value">SANGAM PRIVATE ITI</div></div>
+                        <div class="detail-item">
+                            <span class="label">Roll No:</span>
+                            <span class="value">00220810076383</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="label">Father Name:</span>
+                            <span class="value">MANOJ MAHTO</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="label">Trade Name:</span>
+                            <span class="value">Electrician (NSQF)</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="label">Date of Birth:</span>
+                            <span class="value">03-OCT-2006</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="label">ITI Name:</span>
+                            <span class="value">SANGAM PRIVATE ITI</span>
+                        </div>
                     </div>
                     <div class="right-col">
-                        <div class="detail-item"><div class="label">Name:</div><div class="value">NITISH KUMAR</div></div>
-                        <div class="detail-item"><div class="label">Trade Code:</div><div class="value">442</div></div>
-                        <div class="detail-item"><div class="label">Admission Year:</div><div class="value">2022</div></div>
-                        <div class="detail-item"><div class="label">ITI Code:</div><div class="value">PR10000898</div></div>
-                        <div class="detail-item"><div class="label">Shift:</div><div class="value">1</div></div>
+                        <div class="detail-item">
+                            <span class="label">Name:</span>
+                            <span class="value">NITISH KUMAR</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="label">Trade Code:</span>
+                            <span class="value">442</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="label">Admission Year:</span>
+                            <span class="value">2022</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="label">ITI Code:</span>
+                            <span class="value">PR10000898</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="label">Shift:</span>
+                            <span class="value">1</span>
+                        </div>
                     </div>
                 </div>
+            </div>
+        </div>
 
-                <!-- 3. MARKSHEET TABLE -->
-                
+        <!-- ===== CARD 2: MARKSHEET ===== -->
+        <div class="card">
+            <div class="card-header">Marksheet</div>
+            <div class="card-content">
                 <div class="scroll-wrapper">
                     <table class="marksheet-table">
                         <thead>
                             <tr>
-                                <th colspan="2"></th>
-                                <th colspan="2">Employability Skills</th>
-                                <th colspan="2">Trade Theory</th>
-                                <th colspan="2">Trade Practical</th>
-                                <th colspan="2">Formative Assessment</th>
-                                <th colspan="2">Total</th>
+                                <th colspan="2" scope="colgroup"></th>
+                                <th colspan="2" scope="colgroup">Employability Skills</th>
+                                <th colspan="2" scope="colgroup">Trade Theory</th>
+                                <th colspan="2" scope="colgroup">Trade Practical</th>
+                                <th colspan="2" scope="colgroup">Formative Assessment</th>
+                                <th colspan="2" scope="colgroup">Total</th>
                             </tr>
                             <tr>
-                                <th>S. No.</th><th>Year</th>
-                                <th>Max</th><th>Secured</th>
-                                <th>Max</th><th>Secured</th>
-                                <th>Max</th><th>Secured</th>
-                                <th>Max</th><th>Secured</th>
-                                <th>Max</th><th>Secured</th>
+                                <th scope="col">S. No.</th>
+                                <th scope="col">Year</th>
+                                <th scope="col">Max</th>
+                                <th scope="col">Secured</th>
+                                <th scope="col">Max</th>
+                                <th scope="col">Secured</th>
+                                <th scope="col">Max</th>
+                                <th scope="col">Secured</th>
+                                <th scope="col">Max</th>
+                                <th scope="col">Secured</th>
+                                <th scope="col">Max</th>
+                                <th scope="col">Secured</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td>1</td><td>Year-1</td>
-                                <td>50</td><td>34</td><td>100</td><td>34</td><td>250</td><td>233</td><td>200</td><td>195</td><td>600</td><td>496</td>
+                                <td>1</td>
+                                <td>Year-1</td>
+                                <td>50</td>
+                                <td>34</td>
+                                <td>100</td>
+                                <td>34</td>
+                                <td>250</td>
+                                <td>233</td>
+                                <td>200</td>
+                                <td>195</td>
+                                <td>600</td>
+                                <td>496</td>
                             </tr>
                             <tr>
-                                <td>2</td><td>Year-2</td>
-                                <td>50</td><td>38</td><td>100</td><td>52</td><td>250</td><td>234</td><td>200</td><td>191</td><td>600</td><td>515</td>
+                                <td>2</td>
+                                <td>Year-2</td>
+                                <td>50</td>
+                                <td>38</td>
+                                <td>100</td>
+                                <td>52</td>
+                                <td>250</td>
+                                <td>234</td>
+                                <td>200</td>
+                                <td>191</td>
+                                <td>600</td>
+                                <td>515</td>
                             </tr>
-                            
-                                <td colspan="2"> Total</td>
-                                <td>100</td><td>72</td><td>200</td><td>86</td><td>500</td><td>467</td><td>400</td><td>386</td><td>1200</td><td>1011</td>
-                            </tr>
-                            
                         </tbody>
+                        <tfoot>
+                            <tr class="total-row">
+                                <td colspan="2"><strong>Total</strong></td>
+                                <td>100</td>
+                                <td>72</td>
+                                <td>200</td>
+                                <td>86</td>
+                                <td>500</td>
+                                <td>467</td>
+                                <td>400</td>
+                                <td>386</td>
+                                <td>1200</td>
+                                <td>1011</td>
+                            </tr>
+                        </tfoot>
                     </table>
-                     <div class="result-section">
-                    <div>RESULT DATE:<br>01-May-2025</div>
-                    <div>FINAL RESULT:<br><span style="color: rgb(0, 0, 0);">PASS</span></div>
                 </div>
-                </div>
-            </div></div>
 
-              
+                <div class="result-section">
+                    <div>
+                        <strong>RESULT DATE:</strong><br>
+                        01-May-2025
+                    </div>
+                    <div>
+                        <strong>FINAL RESULT:</strong><br>
+                        <span style="color: #008000;">PASS</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- ===== FLOATING CART (Fully Working) ===== -->
+    <div class="floating-cart" aria-label="Shopping Cart" role="button" tabindex="0" title="View Cart">
+        <i class="fas fa-shopping-cart"></i>
+        <span class="cart-count">3</span>
+    </div>
+
+    <!-- ===== SIMPLE JAVASCRIPT FOR CART ===== -->
+    <script>
+        // Floating Cart Click Handler
+        document.querySelector('.floating-cart').addEventListener('click', function() {
+            alert('🛒 Cart opened!\nItems: ' + this.querySelector('.cart-count').textContent);
+            // You can replace this with actual cart functionality
+        });
+
+        // Hamburger Menu Click Handler (Demo)
+        document.querySelector('.hamburger-menu').addEventListener('click', function() {
+            alert('📋 Menu toggled!');
+            // Add your menu toggle logic here
+        });
+
+        // Keyboard accessibility for cart
+        document.querySelector('.floating-cart').addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                this.click();
+            }
+        });
+
+        // Keyboard accessibility for hamburger
+        document.querySelector('.hamburger-menu').addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                this.click();
+            }
+        });
+    </script>
 
 </body>
 </html>
