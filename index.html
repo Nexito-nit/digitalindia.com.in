@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -24,95 +24,116 @@
             background-color: #fff;
             display: flex;
             align-items: center;
-            padding: 15px 30px;
+            padding: 12px 15px;
             border-bottom: 1px solid #ddd;
             position: sticky;
             top: 0;
             z-index: 1000;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            flex-wrap: wrap;
         }
-        .left-section { display: flex; align-items: center; gap: 20px; }
+        .left-section { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
         .hamburger-menu {
-            width: 30px; height: 20px;
+            width: 25px; height: 18px;
             display: flex; flex-direction: column;
             justify-content: space-between; cursor: pointer;
+            flex-shrink: 0;
         }
         .hamburger-menu span { height: 3px; width: 100%; background-color: #333; border-radius: 1px; }
-        .logos { display: flex; align-items: center; gap: 15px; flex-wrap: wrap; }
-        .logo-1 { height: 50px; } 
-        .logo-2 { height: 80px; } 
-        .logo-3 { height: 60px; } 
-        .logo-4 { height: 90px; }
+        .logos { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+        .logo-1 { height: 35px; } 
+        .logo-2 { height: 45px; } 
+        .logo-3 { height: 35px; } 
+        .logo-4 { height: 50px; }
 
         /* --- CONTAINER --- */
         .main-container {
             max-width: 1250px;
-            margin: 30px auto;
-            padding: 0 20px;
+            margin: 15px auto;
+            padding: 0 12px;
         }
 
         /* --- CARD STYLES --- */
         .card {
             background: white;
             border: 1px solid #ddd;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
             overflow: hidden;
-            margin-bottom: 40px;
+            margin-bottom: 25px;
         }
         .card-header {
-            padding: 20px 25px;
+            padding: 15px 18px;
             border-bottom: 1px solid #eee;
-            font-size: 28px;
+            font-size: 20px;
             font-weight: 700;
             background-color: #fff;
             color: #222;
         }
-        .card-content { padding: 35px; }
-        .profile-section { text-align: center; margin-bottom: 40px; }
+        .card-content { padding: 18px; }
+        .profile-section { text-align: center; margin-bottom: 25px; }
         .profile-img {
-            width: 140px; height: 140px;
+            width: 120px; height: 120px;
             border-radius: 50%;
             border: 4px solid #ff8c00;
             padding: 4px;
             object-fit: cover;
         }
 
-        /* DETAILS GRID */
+        /* DETAILS GRID - Mobile Friendly */
         .details-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            column-gap: 60px;
-            row-gap: 20px;
+            grid-template-columns: 1fr;
+            gap: 8px;
         }
-        .detail-item { display: flex; align-items: flex-start; margin-bottom: 15px; }
-        .label { width: 45%; font-weight: 600; color: #000000; font-size: 17px; }
-        .value { width: 55%; color: #444; font-size: 17px; text-transform: uppercase; font-weight: 500; }
+        .detail-item { 
+            display: flex; 
+            align-items: flex-start; 
+            padding: 6px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .label { 
+            width: 40%; 
+            font-weight: 600; 
+            color: #000000; 
+            font-size: 14px; 
+            flex-shrink: 0;
+        }
+        .value { 
+            width: 60%; 
+            color: #444; 
+            font-size: 14px; 
+            text-transform: uppercase; 
+            font-weight: 500;
+            word-break: break-word;
+        }
 
-        /* --- MARKSHEET TABLE --- */
+        /* --- MARKSHEET TABLE - Mobile Friendly --- */
         .scroll-wrapper {
             width: 100%;
             overflow-x: auto;
-            margin-top: 20px;
+            margin-top: 15px;
+            -webkit-overflow-scrolling: touch;
         }
         .marksheet-table {
-            min-width: 1100px; 
+            min-width: 700px;
             width: 100%;
             border-collapse: separate;
-            border-spacing: 0 10px;
+            border-spacing: 0 8px;
         }
         .marksheet-table th {
-            padding: 12px;
-            font-size: 16px;
+            padding: 8px 6px;
+            font-size: 12px;
             color: #000000;
             font-weight: 700;
             text-align: center;
             background-color: #f1f1f1;
+            white-space: nowrap;
         }
         .marksheet-table td {
-            padding: 18px 10px;
+            padding: 10px 6px;
             text-align: center;
-            font-size: 18px;
+            font-size: 13px;
             background-color: #ffffff;
         }
         .total-row td {
@@ -124,30 +145,31 @@
 
         /* --- RESULT FOOTER --- */
         .result-section {
-            margin-top: 20px;
-            padding: 20px;
+            margin-top: 15px;
+            padding: 15px;
             display: flex;
-            gap: 100px;
-            font-size: 20px;
+            gap: 30px;
+            font-size: 16px;
             font-weight: bold;
             flex-wrap: wrap;
+            justify-content: center;
         }
 
-        /* --- FLOATING CART (Fully Working) --- */
+        /* --- FLOATING CART (Mobile Optimized) --- */
         .floating-cart {
             position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 70px;
-            height: 70px;
+            bottom: 20px;
+            right: 20px;
+            width: 55px;
+            height: 55px;
             background: #ff8c00;
             color: white;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 30px;
-            box-shadow: 0 4px 20px rgba(255, 140, 0, 0.4);
+            font-size: 24px;
+            box-shadow: 0 4px 15px rgba(255, 140, 0, 0.4);
             cursor: pointer;
             transition: all 0.3s ease;
             z-index: 999;
@@ -157,7 +179,6 @@
         .floating-cart:hover {
             transform: scale(1.1);
             background: #e67e00;
-            box-shadow: 0 6px 25px rgba(255, 140, 0, 0.6);
         }
         .floating-cart .cart-count {
             position: absolute;
@@ -166,37 +187,47 @@
             background: red;
             color: white;
             border-radius: 50%;
-            width: 25px;
-            height: 25px;
-            font-size: 14px;
+            width: 22px;
+            height: 22px;
+            font-size: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: bold;
         }
 
-        /* --- RESPONSIVE --- */
-        @media (max-width: 768px) {
-            .details-grid { grid-template-columns: 1fr; }
-            .label, .value { font-size: 15px; }
-            .marksheet-table td { font-size: 14px; padding: 12px 5px; }
-            .marksheet-table th { font-size: 13px; padding: 8px 5px; }
-            .marksheet-table { min-width: 700px; }
-            .floating-cart { width: 55px; height: 55px; font-size: 24px; bottom: 20px; right: 20px; }
-            .result-section { gap: 30px; font-size: 17px; }
-            .card-header { font-size: 22px; }
-            .card-content { padding: 20px; }
-            .logo-1 { height: 35px; }
-            .logo-2 { height: 55px; }
-            .logo-3 { height: 40px; }
-            .logo-4 { height: 60px; }
-            .navbar { padding: 10px 15px; }
+        /* --- EXTRA SMALL PHONES (480px से कम) --- */
+        @media (max-width: 480px) {
+            body { font-size: 14px; }
+            .navbar { padding: 8px 10px; }
+            .logo-1 { height: 28px; }
+            .logo-2 { height: 35px; }
+            .logo-3 { height: 28px; }
+            .logo-4 { height: 40px; }
+            .card-header { font-size: 17px; padding: 12px 14px; }
+            .card-content { padding: 12px; }
+            .profile-img { width: 100px; height: 100px; }
+            .label { font-size: 13px; width: 38%; }
+            .value { font-size: 13px; width: 62%; }
+            .marksheet-table { min-width: 550px; }
+            .marksheet-table th { font-size: 10px; padding: 6px 4px; }
+            .marksheet-table td { font-size: 11px; padding: 8px 4px; }
+            .result-section { font-size: 14px; gap: 20px; flex-direction: column; text-align: center; }
+            .floating-cart { width: 48px; height: 48px; font-size: 20px; bottom: 15px; right: 15px; }
+            .floating-cart .cart-count { width: 20px; height: 20px; font-size: 10px; }
         }
 
-        @media (max-width: 480px) {
-            .marksheet-table { min-width: 500px; }
-            .marksheet-table td { font-size: 12px; padding: 8px 3px; }
-            .marksheet-table th { font-size: 11px; padding: 6px 3px; }
+        /* --- TABLETS AND MEDIUM SCREENS --- */
+        @media (min-width: 768px) {
+            .details-grid {
+                grid-template-columns: 1fr 1fr;
+                column-gap: 40px;
+            }
+            .label { font-size: 17px; width: 45%; }
+            .value { font-size: 17px; width: 55%; }
+            .card-header { font-size: 26px; }
+            .marksheet-table td { font-size: 16px; }
+            .marksheet-table th { font-size: 14px; }
         }
     </style>
 </head>
@@ -209,10 +240,10 @@
                 <span></span><span></span><span></span>
             </div>
             <div class="logos">
-                <img src="https://via.placeholder.com/50x50?text=Logo1" class="logo-1" alt="Company Logo 1">
-                <img src="https://via.placeholder.com/80x80?text=Logo2" class="logo-2" alt="Company Logo 2">
-                <img src="https://via.placeholder.com/60x60?text=Logo3" class="logo-3" alt="Company Logo 3">
-                <img src="https://via.placeholder.com/90x90?text=Logo4" class="logo-4" alt="Company Logo 4">
+                <img src="09.webp" class="logo-1" alt="Logo 1">
+                <img src="2.png" class="logo-2" alt="Logo 2">
+                <img src="3.jpg" class="logo-3" alt="Logo 3">
+                <img src="4.png" class="logo-4" alt="Logo 4">
             </div>
         </div>
     </header>
@@ -225,7 +256,7 @@
             <div class="card-header">Trainee Details</div>
             <div class="card-content">
                 <div class="profile-section">
-                    <img src="https://via.placeholder.com/140x140?text=Photo" alt="Trainee Profile Photo" class="profile-img">
+                    <img src="photo.jpg" alt="Profile" class="profile-img">
                 </div>
 
                 <div class="details-grid">
@@ -285,26 +316,26 @@
                     <table class="marksheet-table">
                         <thead>
                             <tr>
-                                <th colspan="2" scope="colgroup"></th>
-                                <th colspan="2" scope="colgroup">Employability Skills</th>
-                                <th colspan="2" scope="colgroup">Trade Theory</th>
-                                <th colspan="2" scope="colgroup">Trade Practical</th>
-                                <th colspan="2" scope="colgroup">Formative Assessment</th>
-                                <th colspan="2" scope="colgroup">Total</th>
+                                <th colspan="2"></th>
+                                <th colspan="2">Employability Skills</th>
+                                <th colspan="2">Trade Theory</th>
+                                <th colspan="2">Trade Practical</th>
+                                <th colspan="2">Formative Assessment</th>
+                                <th colspan="2">Total</th>
                             </tr>
                             <tr>
-                                <th scope="col">S. No.</th>
-                                <th scope="col">Year</th>
-                                <th scope="col">Max</th>
-                                <th scope="col">Secured</th>
-                                <th scope="col">Max</th>
-                                <th scope="col">Secured</th>
-                                <th scope="col">Max</th>
-                                <th scope="col">Secured</th>
-                                <th scope="col">Max</th>
-                                <th scope="col">Secured</th>
-                                <th scope="col">Max</th>
-                                <th scope="col">Secured</th>
+                                <th>S. No.</th>
+                                <th>Year</th>
+                                <th>Max</th>
+                                <th>Secured</th>
+                                <th>Max</th>
+                                <th>Secured</th>
+                                <th>Max</th>
+                                <th>Secured</th>
+                                <th>Max</th>
+                                <th>Secured</th>
+                                <th>Max</th>
+                                <th>Secured</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -336,8 +367,6 @@
                                 <td>600</td>
                                 <td>515</td>
                             </tr>
-                        </tbody>
-                        <tfoot>
                             <tr class="total-row">
                                 <td colspan="2"><strong>Total</strong></td>
                                 <td>100</td>
@@ -351,7 +380,7 @@
                                 <td>1200</td>
                                 <td>1011</td>
                             </tr>
-                        </tfoot>
+                        </tbody>
                     </table>
                 </div>
 
@@ -370,35 +399,31 @@
 
     </div>
 
-    <!-- ===== FLOATING CART (Fully Working) ===== -->
-    <div class="floating-cart" aria-label="Shopping Cart" role="button" tabindex="0" title="View Cart">
+    <!-- ===== FLOATING CART ===== -->
+    <div class="floating-cart" aria-label="Shopping Cart" role="button" tabindex="0">
         <i class="fas fa-shopping-cart"></i>
         <span class="cart-count">3</span>
     </div>
 
-    <!-- ===== SIMPLE JAVASCRIPT FOR CART ===== -->
+    <!-- ===== JAVASCRIPT ===== -->
     <script>
-        // Floating Cart Click Handler
+        // Floating Cart Click
         document.querySelector('.floating-cart').addEventListener('click', function() {
             alert('🛒 Cart opened!\nItems: ' + this.querySelector('.cart-count').textContent);
-            // You can replace this with actual cart functionality
         });
 
-        // Hamburger Menu Click Handler (Demo)
+        // Hamburger Menu Click
         document.querySelector('.hamburger-menu').addEventListener('click', function() {
             alert('📋 Menu toggled!');
-            // Add your menu toggle logic here
         });
 
-        // Keyboard accessibility for cart
+        // Keyboard accessibility
         document.querySelector('.floating-cart').addEventListener('keydown', function(e) {
             if (e.key === 'Enter' || e.key === ' ') {
                 e.preventDefault();
                 this.click();
             }
         });
-
-        // Keyboard accessibility for hamburger
         document.querySelector('.hamburger-menu').addEventListener('keydown', function(e) {
             if (e.key === 'Enter' || e.key === ' ') {
                 e.preventDefault();
